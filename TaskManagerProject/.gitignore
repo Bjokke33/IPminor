@@ -29,3 +29,6 @@ build/
 
 ### VS Code ###
 .vscode/
+/stories/~$ory01_ShowTasks.docx
+/stories/~$ory02_ShowTaskDetail.docx
+/stories/~$ory03_CreateTask.docx

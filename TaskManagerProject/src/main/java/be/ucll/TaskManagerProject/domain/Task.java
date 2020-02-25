@@ -1,10 +1,6 @@
 package be.ucll.TaskManagerProject.domain;
 
-import be.ucll.TaskManagerProject.controller.TaskController;
-import be.ucll.TaskManagerProject.service.TaskService;
-
 import java.util.Date;
-import java.util.List;
 import java.util.Timer;
 
 public class Task {
