@@ -6,13 +6,16 @@
 </head>
 <body>
     <h1>Task Overview</h1>
-        <table>
+    <div>
+        <p th:if="${tasks.isEmpty()}">No tasks left to do</p>
+
+        <table th:unless="${tasks.isEmpty()}">
             <tr th:each= "task :${tasks}">
-                <td th:text="*{task.taskNumber}"></td>
+                <td th:text="*{task.id}"></td>
                 <td th:text="*{task.date}"></td>
                 <td th:text="*{task.time}"></td>
             </tr>
         </table>
-
+    </div>
 </body>
 </html>

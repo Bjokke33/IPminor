@@ -1,40 +1,81 @@
 package be.ucll.TaskManagerProject.domain;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.Timer;
 
+//todo setters nakijken!
 public class Task {
-    private String TaskNumber;
-    private Date datum;
-    private Timer time;
+    private static int counter = 0;
+    private int id;
+    private LocalDate date;
+    private LocalTime time;
+    private String title;
+    private String description;
 
-    public Task(String taskNumber, Date datum, Timer time) {
-       setTaskNumber(taskNumber);
-       setDatum(datum);
+
+    public Task(){}
+
+    public Task(String title, String description, LocalDate date, LocalTime time) {
+       setId();
+       setTitle(title);
+       setDescription(description);
+       setDate(date);
        setTime(time);
     }
 
-    public String getTaskNumber() {
-        return TaskNumber;
+    public Task(String title, String description, String dateAndTime){
+        setId();
+        setTitle(title);
+        setDescription(description);
+        setDateAndTime(dateAndTime);
     }
 
-    public void setTaskNumber(String taskNumber) {
-        TaskNumber = taskNumber;
+    private void setId(){
+        this.id = counter;
+        counter += 1;
     }
 
-    public Date getDatum() {
-        return datum;
+    public int getId(){
+        return id;
     }
 
-    public void setDatum(Date datum) {
-        this.datum = datum;
+    public String getTitle() {
+        return title;
     }
 
-    public Timer getTime() {
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public LocalTime getTime() {
         return time;
     }
 
-    public void setTime(Timer time) {
+    public void setTime(LocalTime time) {
         this.time = time;
+    }
+
+    public void setDateAndTime(String dateAndTime){
+        String[] parts = dateAndTime.split(" ");
+        setDate(LocalDate.of(Integer.parseInt(parts[0]), Integer.parseInt(parts[1]), Integer.parseInt(parts[2])));
+        setTime(LocalTime.of(Integer.parseInt(parts[3]),0));
     }
 }

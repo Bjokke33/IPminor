@@ -1,6 +1,8 @@
 package be.ucll.TaskManagerProject.service;
 
+import be.ucll.TaskManagerProject.Repository.TaskRepository;
 import be.ucll.TaskManagerProject.domain.Task;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -8,13 +10,20 @@ import java.util.List;
 
 @Service
 public class TaskServiceImpl implements TaskService {
-    private List<Task> tasks;
+    private final TaskRepository taskRepository;
 
-    TaskServiceImpl(){
-        tasks = new ArrayList<>();
+    @Autowired
+    public TaskServiceImpl(TaskRepository taskRepository){
+        this.taskRepository = taskRepository;
     }
+
     @Override
     public List<Task> getTasks() {
-        return null;
+        return taskRepository.getTasks();
+    }
+
+    @Override
+    public void addTask(Task task) {
+        taskRepository.addTask(task);
     }
 }
