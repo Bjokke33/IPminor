@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.Timer;
 
 //todo setters nakijken!
-public class Task {
+public abstract class Task {
     private static int counter = 0;
     private int id;
     private LocalDate date;

@@ -1,5 +1,6 @@
 package be.ucll.TaskManagerProject.controller;
 
+import be.ucll.TaskManagerProject.domain.HeadTask;
 import be.ucll.TaskManagerProject.domain.Task;
 import be.ucll.TaskManagerProject.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/tasks")
+@RequestMapping("/")
 public class TaskController {
     private final TaskService taskService;
 
@@ -18,14 +19,19 @@ public class TaskController {
     }
 
     @GetMapping
+    public String getIndex(){
+        return "Index";
+    }
+
+    @GetMapping(value = "/tasks")
     public String getTasks(Model model){
         model.addAttribute("tasks", taskService.getTasks());
 
         return "TaskOverview";
     }
 
-    @PostMapping
-    public String addTask(@ModelAttribute Task task){
+    @PostMapping(value = "/tasks")
+    public String addTask(@ModelAttribute HeadTask task){
         taskService.addTask(task);
         return "redirect:/tasks";
     }

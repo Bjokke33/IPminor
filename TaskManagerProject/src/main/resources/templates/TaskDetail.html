@@ -9,5 +9,16 @@
     <p th:text="*{'Title: ' + task.title}"></p>
     <p th:text="*{'Description: ' + task.description}"></p>
     <p th:text="*{'Due date: ' + task.getDate() + ' ' +  task.getTime()}"></p>
+
+    <h2>subtasks:</h2>
+    <p th:if="*{task.s}">No tasks left to do</p>
+
+    <table th:unless="${tasks.isEmpty()}">
+        <tr th:each= "task :${tasks}">
+            <td th:text="*{task.id}"></td>
+            <td th:text="*{task.date}"></td>
+            <td th:text="*{task.time}"></td>
+        </tr>
+    </table>
 </body>
 </html>

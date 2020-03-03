@@ -1,13 +1,14 @@
 package be.ucll.TaskManagerProject.service;
 
+import be.ucll.TaskManagerProject.domain.HeadTask;
 import be.ucll.TaskManagerProject.domain.Task;
 
 import java.util.List;
 
 public interface TaskService {
-    List<Task> getTasks();
+    List<HeadTask> getTasks();
 
-    void addTask(Task task);
+    void addTask(HeadTask task);
 
     Task getTaskById(int id);
 }

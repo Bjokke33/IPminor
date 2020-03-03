@@ -1,6 +1,7 @@
 package be.ucll.TaskManagerProject.service;
 
 import be.ucll.TaskManagerProject.Repository.TaskRepository;
+import be.ucll.TaskManagerProject.domain.HeadTask;
 import be.ucll.TaskManagerProject.domain.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,12 +19,12 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<Task> getTasks() {
+    public List<HeadTask> getTasks() {
         return taskRepository.getTasks();
     }
 
     @Override
-    public void addTask(Task task) {
+    public void addTask(HeadTask task) {
         taskRepository.addTask(task);
     }
 
