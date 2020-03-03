@@ -26,10 +26,11 @@ public class TaskRepository {
         Task task1 = new Task("task1", "task1", LocalDate.of(2020, 3, 20), LocalTime.of(10,0));
         Task task2 = new Task("task2", "task2", LocalDate.of(2020,3, 21), LocalTime.of(18,0));
         Task task3 = new Task("task3", "task3", LocalDate.of(2020,3,27), LocalTime.of(17,0));
-
+        Task task4 = new Task("taskAndereConstructor", "description", "2020 3 10 10");
         taskList.add(task1);
         taskList.add(task2);
         taskList.add(task3);
+        taskList.add(task4);
     }
 
     public void addTask(Task task){
@@ -38,5 +39,9 @@ public class TaskRepository {
 
     public List<Task> getTasks(){
         return taskList;
+    }
+
+    public Task getTaskById(int id){
+        return taskList.get(id);
     }
 }

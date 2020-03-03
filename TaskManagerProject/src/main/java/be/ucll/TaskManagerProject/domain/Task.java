@@ -1,5 +1,7 @@
 package be.ucll.TaskManagerProject.domain;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
@@ -15,7 +17,9 @@ public class Task {
     private String description;
 
 
-    public Task(){}
+    public Task(){
+        setId();
+    }
 
     public Task(String title, String description, LocalDate date, LocalTime time) {
        setId();
@@ -25,6 +29,7 @@ public class Task {
        setTime(time);
     }
 
+    @Autowired
     public Task(String title, String description, String dateAndTime){
         setId();
         setTitle(title);

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="*{'Task Detail ' + task.id}"></title>
+</head>
+<body>
+    <h1 th:text="*{'Task Detail ' + task.id}"></h1>
+    <p th:text="*{'Title: ' + task.title}"></p>
+    <p th:text="*{'Description: ' + task.description}"></p>
+    <p th:text="*{'Due date: ' + task.getDate() + ' ' +  task.getTime()}"></p>
+</body>
+</html>

@@ -5,10 +5,7 @@ import be.ucll.TaskManagerProject.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/tasks")
@@ -38,4 +35,9 @@ public class TaskController {
         return "TaskCreate";
     }
 
+    @GetMapping(value="/{id}")
+    public String getTaskDetail(Model model, @PathVariable int id){
+        model.addAttribute("task", taskService.getTaskById(id));
+        return "TaskDetail";
+    }
 }
