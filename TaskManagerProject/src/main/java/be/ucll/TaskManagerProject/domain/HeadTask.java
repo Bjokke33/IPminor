@@ -23,6 +23,11 @@ public class HeadTask extends Task {
         substasks = new ArrayList<>();
     }
 
+    public HeadTask(int id, String title, String description, String dateAndTime){
+        super(id, title, description, dateAndTime);
+        substasks = new ArrayList<>();
+    }
+
     public List<SubTask> getSubstasks() {
         return substasks;
     }

@@ -6,9 +6,11 @@ import be.ucll.TaskManagerProject.domain.Task;
 import java.util.List;
 
 public interface TaskService {
-    List<HeadTask> getTasks();
+    List<Task> getTasks();
 
-    void addTask(HeadTask task);
+    void addTask(Task task);
 
     Task getTaskById(int id);
+
+    Task editTask(int id, HeadTask task);
 }

@@ -1,5 +1,6 @@
 package be.ucll.TaskManagerProject.controller;
 
+import be.ucll.TaskManagerProject.Repository.RepositoryException;
 import be.ucll.TaskManagerProject.domain.HeadTask;
 import be.ucll.TaskManagerProject.domain.Task;
 import be.ucll.TaskManagerProject.service.TaskService;
@@ -36,13 +37,42 @@ public class TaskController {
         return "redirect:/tasks";
     }
 
+
+
     @GetMapping(value="/new")
     public String createTask(){
         return "TaskCreate";
     }
 
-    @GetMapping(value="/{id}")
+    @GetMapping(value="/tasks/{id}")
     public String getTaskDetail(Model model, @PathVariable int id){
+        try {
+            model.addAttribute("task", taskService.getTaskById(id));
+            return "TaskDetail";
+        }
+        catch(Exception e){
+            model.addAttribute("error", e.getMessage());
+            return "Error";
+        }
+    }
+
+    @GetMapping(value="/tasks/edit/{id}")
+    public String editTask(Model model, @PathVariable int id){
+        try{
+            model.addAttribute("task", taskService.getTaskById(id));
+            model.addAttribute("id", id);
+            return "EditTask";
+        }
+        catch(Exception e){
+            model.addAttribute("error", e.getMessage());
+            return "Error";
+        }
+    }
+
+    @PostMapping(value="tasks/edit/EditTask")
+    public String TaskEdited(Model model, @RequestParam int id, @RequestParam String title, @RequestParam String description, @RequestParam String dueDate){
+        HeadTask task = new HeadTask(id, title,description,dueDate);
+        taskService.editTask(id, task);
         model.addAttribute("task", taskService.getTaskById(id));
         return "TaskDetail";
     }

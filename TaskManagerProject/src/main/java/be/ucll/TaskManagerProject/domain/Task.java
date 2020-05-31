@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Timer;
 
@@ -37,6 +38,15 @@ public abstract class Task {
         setDateAndTime(dateAndTime);
     }
 
+    public Task(int id, String title, String description, String dateAndTime){
+        setId(id);
+        setTitle(title);
+        setDescription(description);
+        setDateAndTime(dateAndTime);
+    }
+    private void setId(int id){
+        this.id = id;
+    }
     private void setId(){
         this.id = counter;
         counter += 1;
@@ -76,6 +86,11 @@ public abstract class Task {
 
     public void setTime(LocalTime time) {
         this.time = time;
+    }
+
+    public String getDueDateForEdit(){
+
+        return date.format(DateTimeFormatter.ofPattern("YYYY MM dd")).toString() + " "+ Integer.toString(time.getHour());
     }
 
     public void setDateAndTime(String dateAndTime){

@@ -11,9 +11,9 @@
 
         <table th:unless="${tasks.isEmpty()}">
             <tr th:each= "task :${tasks}">
-                <td th:text="*{task.id}"></td>
-                <td th:text="*{task.date}"></td>
-                <td th:text="*{task.time}"></td>
+                <td th:text="'task: ' + *{task.id}"></td>
+                <td th:text="*{'due ' + task.date}"></td>
+                <td th:text="*{'at ' +task.time}"></td>
             </tr>
         </table>
     </div>

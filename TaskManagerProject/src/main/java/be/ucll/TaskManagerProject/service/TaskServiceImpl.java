@@ -19,12 +19,12 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<HeadTask> getTasks() {
+    public List<Task> getTasks() {
         return taskRepository.getTasks();
     }
 
     @Override
-    public void addTask(HeadTask task) {
+    public void addTask(Task task) {
         taskRepository.addTask(task);
     }
 
@@ -33,5 +33,8 @@ public class TaskServiceImpl implements TaskService {
         return taskRepository.getTaskById(id);
     }
 
-
+    @Override
+    public Task editTask(int id, HeadTask task){
+        return taskRepository.editTask(id, task);
+    }
 }

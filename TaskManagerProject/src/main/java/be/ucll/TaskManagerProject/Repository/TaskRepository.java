@@ -12,11 +12,9 @@ import java.util.List;
 
 @Repository
 public class TaskRepository {
-    private List<HeadTask> headTasks;
     private List<Task> taskList;
 
     public TaskRepository(){
-        taskList = new ArrayList<>();
         taskList = new ArrayList<>();
         //adds dummy data to the ArrayList
         dummyData();
@@ -37,16 +35,26 @@ public class TaskRepository {
 
     public void addTask(Task task){
         taskList.add(task);
-        if(task instanceof HeadTask){
-            headTasks.add((HeadTask)task);
-        }
     }
 
-    public List<HeadTask> getTasks(){
-        return headTasks;
+    public List<Task> getTasks(){
+        return taskList;
     }
 
     public Task getTaskById(int id){
+      checkId(id);
         return taskList.get(id);
+    }
+
+    public Task editTask(int id, HeadTask task){
+        checkId(id);
+        taskList.set(id, task);
+       return getTaskById(id);
+    }
+
+    public void checkId(int id){
+        if(id < 0 || id> taskList.size()+1){
+            throw new RepositoryException("Task not found");
+        }
     }
 }
