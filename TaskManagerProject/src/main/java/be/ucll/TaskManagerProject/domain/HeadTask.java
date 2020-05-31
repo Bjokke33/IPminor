@@ -35,4 +35,8 @@ public class HeadTask extends Task {
     public void addSubTask(SubTask task){
         substasks.add(task);
     }
+
+    public List<SubTask> getSubTasks(){
+        return substasks;
+    }
 }

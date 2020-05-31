@@ -2,6 +2,7 @@ package be.ucll.TaskManagerProject.controller;
 
 import be.ucll.TaskManagerProject.Repository.RepositoryException;
 import be.ucll.TaskManagerProject.domain.HeadTask;
+import be.ucll.TaskManagerProject.domain.SubTask;
 import be.ucll.TaskManagerProject.domain.Task;
 import be.ucll.TaskManagerProject.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,7 @@ public class TaskController {
     @GetMapping(value="/tasks/{id}")
     public String getTaskDetail(Model model, @PathVariable int id){
         try {
-            model.addAttribute("task", taskService.getTaskById(id));
+            model.addAttribute("task", (HeadTask)taskService.getTaskById(id));
             return "TaskDetail";
         }
         catch(Exception e){
@@ -75,5 +76,18 @@ public class TaskController {
         taskService.editTask(id, task);
         model.addAttribute("task", taskService.getTaskById(id));
         return "TaskDetail";
+    }
+
+    @GetMapping(value="/tasks/{id}/sub/create")
+    public String CreateSubTask(@PathVariable int id, Model model){
+        model.addAttribute("task", taskService.getTaskById(id));
+        return "CreateSubtask";
+    }
+
+    @PostMapping(value="/CreateSubtask")
+    public String SubtaskCreated(Model model, @RequestParam String title, @RequestParam String description, @RequestParam int id){
+        SubTask subtask = new SubTask(title, description);
+        taskService.addSubTask(subtask, id);
+        return "Index";
     }
 }

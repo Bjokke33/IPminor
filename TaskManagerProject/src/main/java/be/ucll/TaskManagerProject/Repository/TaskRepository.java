@@ -1,6 +1,7 @@
 package be.ucll.TaskManagerProject.Repository;
 
 import be.ucll.TaskManagerProject.domain.HeadTask;
+import be.ucll.TaskManagerProject.domain.SubTask;
 import be.ucll.TaskManagerProject.domain.Task;
 import org.springframework.stereotype.Repository;
 
@@ -52,9 +53,16 @@ public class TaskRepository {
        return getTaskById(id);
     }
 
-    public void checkId(int id){
+    public boolean checkId(int id){
         if(id < 0 || id> taskList.size()+1){
             throw new RepositoryException("Task not found");
         }
+        return true;
+    }
+
+    public void addSubTask(SubTask subTask, int id){
+        HeadTask temp = (HeadTask)getTaskById(id);
+        temp.addSubTask(subTask);
+        editTask(id, temp);
     }
 }

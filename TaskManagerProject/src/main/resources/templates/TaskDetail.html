@@ -9,18 +9,22 @@
     <p th:text="*{'Title: ' + task.title}"></p>
     <p th:text="*{'Description: ' + task.description}"></p>
     <p th:text="*{'Due date: ' + task.getDate() + ' ' +  task.getTime()}"></p>
-    <!--
-    <h2>subtasks:</h2>
-    <p th:if="*{task.s}">No tasks left to do</p>
 
-    <table th:unless="${tasks.isEmpty()}">
-        <tr th:each= "task :${tasks}">
-            <td th:text="*{task.id}"></td>
-            <td th:text="*{task.date}"></td>
-            <td th:text="*{task.time}"></td>
+    <!-- button and subtasks not working
+    <button type="button" th:onclick="*{'tasks/edit/' + task.id}">Edit Task</button>
+    -->
+    <h2>subtasks:</h2>
+
+        <table>
+        <tr th:each= "subtask :${task.getSubTasks()}">
+            <td th:text="*{subtask.getTitle()}"></td>
+            <td th:text="*{subtask.getDescription()}"></td>
         </tr>
     </table>
- -->
+    <!-- button not working
+    <button type="button" th:onclick="*{'tasks/' + task.id+ '/sub/create'}">Add SubTask</button>
+    -->
+
 
 </body>
 </html>
